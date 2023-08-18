@@ -1,6 +1,8 @@
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 export default async function handler(req, res) {
+    // http://localhost:3000/api/issue?board=55
+
     const {board} = req.query;
 
     const apiUrl = `${process.env.NEXT_PUBLIC_JIRA_BASE_URL}/rest/agile/1.0/board/${board ?? '51'}/issue`;
