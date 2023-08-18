@@ -13,7 +13,14 @@ export default async function handler(req, res) {
     try {
         const response = await fetch(apiUrl, requestOptions);
         const data = await response.json();
-        res.status(200).json(data);
+        const projects = data.projects.map(project => ({
+            id: project.id,
+            key: project.key,
+            name: project.name,
+            projectTypeKey: project.projectTypeKey,
+            
+        }))
+        res.status(200).json(projects);
     } catch (error) {
         res.status(500).json({ error: "Error al consultar la API de Jira" });
     }
